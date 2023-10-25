@@ -13,9 +13,13 @@ function App() {
 
         <Routes>
           <Route path='/' element={<HomePage />}></Route>
-          <Route path='/blog' element={<BlogPage />}></Route>
-          <Route path='/blog/:slug' element={<BlogPost />}></Route>
+
+          <Route path='/blog' element={<BlogPage />}>
+            <Route path=':slug' element={<BlogPost />}>
+            </Route></Route>
+
           <Route path='/profile' element={<ProfilePage />}></Route>
+
           <Route path='*' element={<p>Not found</p>}></Route>
         </Routes>
       </HashRouter>
