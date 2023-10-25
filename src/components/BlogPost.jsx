@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { blogdata } from "./blogdata";
+import { blogdata } from "../data/blogdata";
 
 function BlogPost() {
     const navigate = useNavigate()
