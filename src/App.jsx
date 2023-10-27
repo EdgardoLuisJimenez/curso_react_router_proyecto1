@@ -6,7 +6,7 @@ import { Menu } from './components/Menu';
 import { BlogPost } from './components/BlogPost';
 import { LoginPage } from './auth/LoginPage';
 import { LogoutPage } from './auth/LogoutPage';
-import { AuthProvider, useAuth } from './auth/auth';
+import { AuthProvider, AuthRoute, useAuth } from './auth/auth';
 
 function App() {
   return (
@@ -23,8 +23,23 @@ function App() {
               </Route></Route>
 
             <Route path='/login' element={<LoginPage />}></Route>
-            <Route path='/logout' element={<LogoutPage />}></Route>
-            <Route path='/profile' element={<ProfilePage />}></Route>
+            <Route
+              path='/logout'
+              element={
+                <AuthRoute>
+                  <LogoutPage />
+                </AuthRoute>}>
+
+            </Route>
+            <Route
+              path='/profile'
+              element={
+                <AuthRoute>
+                  <ProfilePage />
+                </AuthRoute>
+              }>
+
+            </Route>
 
             <Route path='*' element={<p>Not found</p>}></Route>
           </Routes>

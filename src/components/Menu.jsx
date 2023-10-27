@@ -10,7 +10,9 @@ function Menu() {
         <nav>
             <ul>
                 {routes.map(route => {
+                    // If the user is authenticated, then Login is no show
                     if (route.publicOnly && auth.user) return null
+                    // If the user is't authenticated, then Logout is no show
                     if (route.private && !auth.user) return null
 
                     return (
