@@ -1,13 +1,14 @@
-import React, { useContext } from "react"
+import React from "react"
 import { useNavigate } from "react-router-dom"
 
 const AuthContext = React.createContext()
 
 function AuthProvider({ children }) {
     const navigate = useNavigate()
-    const { user, setUser } = React.useState(null)
+    const [user, setUser] = React.useState(null)
 
     const login = ({ username }) => {
+        console.log({ username });
         setUser({ username })
         navigate('/profile')
     }
