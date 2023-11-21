@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { blogdata } from "../data/blogdata";
 import { useAuth } from "../auth/auth";
@@ -11,7 +11,7 @@ function BlogPost() {
 
     const blogpost = blogdata.find(post => post.slug === slug)
 
-    const canDelete = auth.user?.isAdmin || blogpost.author === auth.user?.isAdmin
+    const canDelete = auth.user.permissions.Delete || blogpost.author === auth.user.username
     // console.log(auth.user);
 
     const returnToBlog = () => {
