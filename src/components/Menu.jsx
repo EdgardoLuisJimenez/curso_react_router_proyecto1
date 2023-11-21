@@ -7,8 +7,8 @@ function Menu() {
 
 
     return (
-        <nav>
-            <ul>
+        <nav className="w-full">
+            <ul className="flex flex-row list-none justify-around py-4">
                 {routes.map(route => {
                     // If the user is authenticated, then Login is no show
                     if (route.publicOnly && auth.user) return null

@@ -1,10 +1,11 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import { blogdata } from "../data/blogdata";
+import { Title } from "../components/Title";
 
 function BlogPage() {
     return (<>
-        <h1>BlogPage</h1>
+        <Title text={"BlogPage"}/>
 
         <Outlet/>
 

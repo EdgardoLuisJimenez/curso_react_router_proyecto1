@@ -1,7 +1,8 @@
 import React from "react";
+import { Title } from "../components/Title";
 
 function HomePage() {
-    return (<h1>HomePage</h1>)
+    return (<Title text={"HomePage"}/>)
 }
 
 export { HomePage }

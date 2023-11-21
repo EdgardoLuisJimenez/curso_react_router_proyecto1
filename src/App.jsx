@@ -1,12 +1,13 @@
+import './App.css'
 import { HashRouter, Routes, Route } from 'react-router-dom'
 import { HomePage } from './pages/HomePage';
 import { BlogPage } from './pages/BlogPage';
 import { ProfilePage } from './pages/ProfilePage';
 import { Menu } from './components/Menu';
 import { BlogPost } from './components/BlogPost';
-import { LoginPage } from './auth/LoginPage';
-import { LogoutPage } from './auth/LogoutPage';
 import { AuthProvider, AuthRoute, useAuth } from './auth/auth';
+import { LoginPage } from './pages/LoginPage';
+import { LogoutPage } from './pages/LogoutPage';
 
 function App() {
   return (
