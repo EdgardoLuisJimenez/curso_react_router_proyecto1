@@ -17,7 +17,6 @@ function BlogPage() {
                         post={post} />
                 ))
             }
-
         </ul>
     </>)
 }

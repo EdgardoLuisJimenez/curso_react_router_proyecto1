@@ -27,7 +27,11 @@ function LoginPage() {
                 value={username}
                 onChange={e => setUsername(e.target.value)}
                 className="bg-gray-100 rounded-lg w-52 h-9" />
-            <button type="submit" className="bg-sky-400 w-44 rounded-lg h-9 text-white hover:bg-amber-200 hover:scale-110 ease-in-out transition delay-100">Entrar</button>
+            <button
+                type="submit"
+                className="bg-sky-400 w-44 rounded-lg h-9 text-white hover:bg-amber-200 hover:scale-110 ease-in-out transition delay-100">
+                Entrar
+            </button>
         </form>
     </>)
 }

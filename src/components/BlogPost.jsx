@@ -12,6 +12,8 @@ function BlogPost() {
     const blogpost = blogdata.find(post => post.slug === slug)
 
     const canDelete = auth.user.permissions.Delete || blogpost.author === auth.user.username
+    const canEdit = auth.user.permissions.overWrite || blogpost.author === auth.user.username
+
     // console.log(auth.user);
 
     const returnToBlog = () => {
@@ -19,14 +21,25 @@ function BlogPost() {
     }
 
     return (<>
-        <h2>{blogpost.title}</h2>
-        <button onClick={returnToBlog}>Volver al blog</button>
-        <p>{blogpost.author}</p>
-        <p>{blogpost.content}</p>
+        <button
+            onClick={returnToBlog}
+            className="bg-sky-400 w-44 rounded-lg h-9 text-white hover:bg-amber-200 hover:scale-110 ease-in-out transition delay-100">
+            Volver al blog
+        </button>
+        <div className="flex flex-col justify-between items-start mx-2.5 my-3.5 p-2.5 rounded-lg w-72 h-72  border-2">
+            <h2>{blogpost.title}</h2>
+            <p>Author: {blogpost.author}</p>
+            <p>{blogpost.content}</p>
 
-        {canDelete && (
-            <button>Eliminar BlogPost</button>
-        )}
+            <div className="flex gap-3">
+                {canDelete && (
+                    <button className="w-1/2 bg-red-600 text-white rounded-lg">Eliminar BlogPost</button>
+                )}
+                {canEdit && (
+                    <button className="w-1/2 bg-red-600 text-white rounded-lg">Editar BlogPost</button>
+                )}
+            </div>
+        </div>
 
     </>)
 }
