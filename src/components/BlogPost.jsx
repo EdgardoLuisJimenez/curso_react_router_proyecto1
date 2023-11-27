@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { blogdata } from "../data/blogdata";
 import { useAuth } from "../auth/auth";
+import { EditPortal } from "./EditPortal";
 
 function BlogPost() {
     const auth = useAuth()
@@ -35,9 +36,7 @@ function BlogPost() {
                 {canDelete && (
                     <button className="w-1/2 bg-red-600 text-white rounded-lg">Eliminar BlogPost</button>
                 )}
-                {canEdit && (
-                    <button className="w-1/2 bg-red-600 text-white rounded-lg">Editar BlogPost</button>
-                )}
+                <EditPortal title={blogpost.title}/>
             </div>
         </div>
 
