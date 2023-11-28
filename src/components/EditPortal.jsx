@@ -1,28 +1,71 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { createPortal } from "react-dom"
 import { useAuth } from "../auth/auth"
 
 
-function EditPortal({title}) {
+function EditPortal({ title, content, id }) {
     const auth = useAuth()
     const [showModal, setShowModal] = useState(false)
+    const [textTitle, setTextTitle] = useState(title)
+    const [textContent, setTextContent] = useState(content)
+    const blogdata = auth.blogData
 
     const canEdit = auth.user.permissions.overWrite || blogpost.author === auth.user.username
+
+    const objIdx = blogdata.findIndex((obj => obj.id === id))
+
+    const saveTheEdit = (e) => {
+        e.preventDefault()
+        setShowModal(false)
+        blogdata[objIdx].title = textTitle
+        blogdata[objIdx].content = textContent
+        auth.modifyBlogData(blogdata)
+    }
+
+    useEffect(() => {
+        console.log(auth.blogData);
+    }, [auth.blogData])
 
     return (
         <>
             {canEdit && (
                 <button
-                    className="w-1/2 bg-red-600 text-white rounded-lg"
+                    className="w-1/2 bg-green-600 text-white rounded-lg"
                     onClick={() => setShowModal(true)}>
                     Editar BlogPost
                 </button>
             )}
             {showModal && createPortal(
-                <div className="flex justify-center items-center absolute inset-0 w-full h-full">
-                    <h2>{title}</h2>
-                    {/* <p>Author: {blogpost.author}</p>
-                    <p>{blogpost.content}</p> */}
+                <div className="absolute inset-0">
+                    <div className="flex flex-col justify-center items-center w-full h-full">
+                        <div className="flex flex-col w-6/12 h-3/6 justify-around items-center border-4 rounded-lg">
+
+                            <form onSubmit={saveTheEdit}>
+                                <label>Title: </label>
+                                <input
+                                    type="text"
+                                    defaultValue={title}
+                                    onChange={e => setTextTitle(e.target.value)} />
+
+                                <label>Content: </label>
+                                <textarea type="text" defaultValue={content}
+                                    onChange={e => setTextContent(e.target.value)} />
+
+                                <button
+                                    className="w-1/2 bg-red-600 text-white rounded-lg"
+                                    onClick={() => setShowModal(false)}
+                                    type="button">
+                                    Salir sin Guardar
+                                </button>
+                                <button
+                                    type="submit"
+                                    className="w-1/2 bg-green-600 text-white rounded-lg">
+                                    Guardar y salir
+                                </button>
+                            </form>
+                        </div>
+
+                    </div>
                 </div>,
                 document.body
             )}

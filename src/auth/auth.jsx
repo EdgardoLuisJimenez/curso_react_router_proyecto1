@@ -1,6 +1,7 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { Navigate, useNavigate } from "react-router-dom"
 import { getPermissions, user } from "./permissions"
+import { blogdata } from "../data/blogdata"
 
 const Irisval = new user("IrisVal", "Student")
 const RetaxMaster = new user("RetaxMaster", "Teacher")
@@ -13,6 +14,7 @@ const AuthContext = React.createContext()
 function AuthProvider({ children }) {
     const navigate = useNavigate()
     const [user, setUser] = React.useState(null)
+    const [blogData, setBlogData] = useState(blogdata)
 
     const login = ({ username }) => {
         const permissions = getPermissions(adminList, username)
@@ -25,7 +27,11 @@ function AuthProvider({ children }) {
         navigate('/')
     }
 
-    const auth = { user, login, logout }
+    const modifyBlogData = (argument) => {
+        setBlogData(argument)
+    }
+
+    const auth = { user, login, logout, blogData, modifyBlogData }
 
     return (
         <AuthContext.Provider value={auth}>
