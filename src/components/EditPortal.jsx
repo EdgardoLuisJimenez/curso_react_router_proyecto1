@@ -8,23 +8,21 @@ function EditPortal({ title, content, id }) {
     const [showModal, setShowModal] = useState(false)
     const [textTitle, setTextTitle] = useState(title)
     const [textContent, setTextContent] = useState(content)
-    const blogdata = auth.blogData
-
-    const canEdit = auth.user.permissions.overWrite || blogpost.author === auth.user.username
-
+    const [blogdata, setblogdata] = useState(auth.blogData)
     const objIdx = blogdata.findIndex((obj => obj.id === id))
+
+    const canEdit = auth.user.permissions.overWrite || blogdata[objIdx].author === auth.user.username
+
+    console.log();
 
     const saveTheEdit = (e) => {
         e.preventDefault()
         setShowModal(false)
-        blogdata[objIdx].title = textTitle
-        blogdata[objIdx].content = textContent
-        auth.modifyBlogData(blogdata)
+        const updateBlogData = [...blogdata]
+        updateBlogData[objIdx].title = textTitle
+        updateBlogData[objIdx].content = textContent
+        auth.modifyBlogData(updateBlogData)
     }
-
-    useEffect(() => {
-        console.log(auth.blogData);
-    }, [auth.blogData])
 
     return (
         <>
@@ -64,7 +62,6 @@ function EditPortal({ title, content, id }) {
                                 </button>
                             </form>
                         </div>
-
                     </div>
                 </div>,
                 document.body

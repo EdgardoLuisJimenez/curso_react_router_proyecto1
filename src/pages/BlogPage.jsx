@@ -6,10 +6,9 @@ import { useAuth } from "../auth/auth";
 
 function BlogPage() {
     const auth = useAuth()
-    const [blogdata, setBlogdata] = useState(auth.blogData)
 
     useEffect(() => {
-        console.log(`Esto es desde el BlogPage ${blogdata}`);
+        
     }, [auth.blogData])
 
     return (<>
@@ -19,7 +18,7 @@ function BlogPage() {
 
         <ul>
             {
-                blogdata.map(post => (
+                auth.blogData.map(post => (
                     <BlogLink
                         key={post.id}
                         post={post} />

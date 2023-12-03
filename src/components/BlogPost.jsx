@@ -1,26 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../auth/auth";
 import { EditPortal } from "./EditPortal";
 
 function BlogPost() {
     const auth = useAuth()
     const navigate = useNavigate()
-    
+
     const { slug } = useParams();
-    
+
     const [blogpost, setBlogPost] = useState(auth.blogData.find(post => post.slug === slug))
 
-    useEffect(() => {
-        // setBlogPost(auth.blogData.find(post => post.slug === slug))
-        // console.log(auth.blogData.find(post => post.slug === slug));
-        console.log(`Esto es desde el BlogPost`);
-        console.log(auth.blogData);
-    }, [auth.blogData])
-
     const canDelete = auth.user.permissions.Delete || blogpost.author === auth.user.username
-
-    // console.log(auth.user);
 
     const returnToBlog = () => {
         navigate('/blog')
