@@ -1,8 +1,9 @@
-# React + Vite
+# 🤠This is a Personal Project to learn react router dom
+If you would like to view the project, follow these steps:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```
+git clone git@github.com:EdgardoLuisJimenez/curso_react_router_proyecto1.git
+cd curso_react_router_proyecto1
+npm install
+```
+I hope you explore this project and if you have any suggestions, please free to send them to me.
